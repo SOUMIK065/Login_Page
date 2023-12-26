@@ -293,7 +293,7 @@ function forgot()
                 {
                     document.getElementById("cl").innerHTML = "";
                 }
-                cl_message="Forget Account Password";
+                cl_message="Forget Password";
                 cx=cl_message.length;
                 document.getElementById("cl").value=cl_message;
                 cl_show();
