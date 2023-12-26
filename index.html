@@ -1,0 +1,69 @@
+<!doctype html>
+<html>
+<head>
+    <title>Account Creating From</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
+    <link rel="stylesheet" href="from_css.css">
+</head>
+<body>
+    <div class="typing" id="cl"></div>
+    <div id="a">
+        <h2 class="font-effect-shadow-multiple" id="wl">HELLO !</h2>
+        <h2 id="wl1" class="font-effect-shadow-multiple">WELLCOME</h2>
+        <div id="from_1">
+            <div id="Ename">
+                <input class="from1" id="input1" required>
+            </div>
+        
+            <div id="psw">
+                <input class="from1" id="input2" required >
+            </div>
+
+            <div id="repsw">
+                <input class="from1" id="input3" required>
+            </div>
+        </div>
+        <a id="fpassword">Forgot Password</a>
+        <div class="bn">
+            <button type="button" name="Back" id="back">Back</button>
+            <button type="button" name="Next" id="next">Next</button>
+            <button type="button" name="submit" id="submit">Submit</button>
+        </div>
+        <pre> <h4 id="new">New User ? <a id="create" type="button" name="Create">Create</a></h4></pre>
+        <pre > <h4 id="old">Already have a Accunt? <br><a id="login" type="button" name="Login">Log-in</a></h4></pre>
+        <img id="img" src="imoji.png">
+        <img id="img1" src="think_1.png">
+        <img id="img2" src="think_2.png">
+        <textarea readonly id="error_msg"></textarea>
+    </div>
+    <div id="b">
+        <br>
+        <div>
+            <input name="checkbox" id="up" type="checkbox" value="One">
+            <label id="up1" for="up">One UpperCase Character</label>
+        </div>
+        <div>
+            <input name="checkbox" id="lw" type="checkbox" value="One">
+            <label id="lw1" for="lw">One LowerCase Character</label>
+        </div>
+        <div>
+            <input name="checkbox" id="ln" type="checkbox" value="One">
+            <label id="ln1" for="ln">Atleast One Number</label>
+        </div>
+        <div>
+            <input name="checkbox" id="sp" type="checkbox" value="One">
+            <label id="sp1" for="sp">Atleast One Special Character <br>[like-@,#,$,%...]</label>
+        </div>
+        <div>
+            <input name="checkbox" id="ch" type="checkbox" value="One">
+            <label  id="ch1" for="ch">Atleast 6 Characters long</label>
+        </div>
+        <div>
+            <textarea id="check" placeholder="In this area you can see your password..."></textarea>
+        </div>
+    </div>
+</body>
+<script src="from_javascript.js"></script>
+</html>
