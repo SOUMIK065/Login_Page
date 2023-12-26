@@ -325,7 +325,7 @@ label
         height: 89vh;
         width: 83vw;
         left: 7vw;
-        top: -4vh;
+        top: -3vh;
     }
     #from_1
     {
@@ -421,14 +421,14 @@ label
         font-weight: bold;
         padding: 0.1em;
         font-size: 2vw;
-        top: 40vh;
+        top: 35vh;
         position: relative;
         left: 19vw;
         z-index: 50;
         overflow: hidden;
         white-space: nowrap;
         font-family: monospace;
-        height: 4.5vh;
+        height: 4vh;
         animation: blink 1.2s infinite;
         border-right: 0.2rem solid;
         font-size: 1.2rem;

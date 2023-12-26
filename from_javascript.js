@@ -438,7 +438,7 @@ function create()
     }
     else if(width <= 770)
     {
-        document.getElementById("from_1").style.top= "38vh";
+        document.getElementById("from_1").style.top= "40vh";
         document.getElementById("submit").style.left= "-7vw";
         document.getElementById("back").style.left= "12vw";
         document.getElementById("next").style.left= "11vw";
