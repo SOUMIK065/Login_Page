@@ -6,6 +6,8 @@ let m;
 let cl_msg=0;
 let cx;
 let ct;
+let gen_password = '';
+
 var sbt=document.getElementById("submit");
 
 document.getElementById("cl").style.color = "red";
@@ -159,7 +161,31 @@ function checkfunction(event)
                 document.getElementById("sp").checked=false;
                 document.getElementById("ch").checked=false;
             }
+            else
+            {
+            }
             //emailfunc();
+        }
+
+        else if(document.getElementById("input1").style.visibility == "hidden" && document.getElementById("input2").placeholder == "Password" && document.getElementById("input3").placeholder == "Re-Enter Password")
+        {
+            pf=pass_chk_func();
+            if(pf == true)
+            {
+                document.getElementById("input3").removeEventListener("input",passfunc);
+                document.getElementById("input2").removeEventListener("input",passfunc2);
+                document.getElementById("input2").removeEventListener("keyup",clr);
+                document.getElementById("input3").removeEventListener("keyup",clr);
+
+                document.getElementById("input1").value="";
+                document.getElementById("input2").value="";
+                document.getElementById("input3").value="";
+            }
+            else if(pf == false)
+            {
+                document.getElementById("input2").addEventListener("keyup",clr);
+                document.getElementById("input3").addEventListener("keyup",clr);
+            }
         }
 
         else if(document.getElementById("input1").placeholder == "example123@gmail.com" && document.getElementById("input2").placeholder == "Password" && document.getElementById("input3").placeholder == "Re-Enter Password")
@@ -201,27 +227,6 @@ function checkfunction(event)
                 document.getElementById("ch").checked=false;
             }
             else if(ep1 == false)
-            {
-                document.getElementById("input2").addEventListener("keyup",clr);
-                document.getElementById("input3").addEventListener("keyup",clr);
-            }
-        }
-
-        else if(document.getElementById("input2").placeholder == "Password" && document.getElementById("input3").placeholder == "Re-Enter Password")
-        {
-            pf=pass_chk_func();
-            if(pf == true)
-            {
-                document.getElementById("input3").removeEventListener("input",passfunc);
-                document.getElementById("input2").removeEventListener("input",passfunc2);
-                document.getElementById("input2").removeEventListener("keyup",clr);
-                document.getElementById("input3").removeEventListener("keyup",clr);
-
-                document.getElementById("input1").value="";
-                document.getElementById("input2").value="";
-                document.getElementById("input3").value="";
-            }
-            else if(pf == false)
             {
                 document.getElementById("input2").addEventListener("keyup",clr);
                 document.getElementById("input3").addEventListener("keyup",clr);
@@ -332,6 +337,29 @@ function forgot()
         {
             document.getElementById("submit").style.left= "-7vw";
         }
+        
+        ct=document.getElementById("cl").innerHTML.length;
+        document.getElementById("cl").style.color = "red";
+        cl_show().then((ep) => {
+            if (ep === true) 
+            {
+                document.getElementById("cl").innerHTM="";
+                cl_delete();
+                timeout=3000;
+                setTimeout(() => 
+                {
+                    cl_message="";
+                    if(ct >= 0)
+                    {
+                        document.getElementById("cl").innerHTML = "";
+                    }
+                    cl_message="Login Your Account";
+                    cx=cl_message.length;
+                    document.getElementById("cl").value=cl_message;
+                    ret=cl_show();
+                }, timeout);
+            } 
+        });
     }
 
     //while clicking the forgot button the next button work
@@ -821,6 +849,8 @@ let e_msg=document.getElementById("error_msg");
 
 function emailfunc1()
 {
+    len_e="";
+    e_message="";
     let checkbox_ret=areAllCheckboxesChecked();
     email=document.getElementById("input1").value;
     p2=document.getElementById("input2").value;
@@ -859,6 +889,20 @@ function emailfunc1()
     {
         e_message="Please Check Your Password... \n[Tips:- Check all boxes are Marked]";
         display_err_msg();
+        if(width > 770)
+        {
+            setTimeout(function()
+            {document.getElementById("ab").style.top="7vh";
+            document.getElementById("ab").style.zIndex="30";
+            },12000);
+        }
+        else if(width <= 770)
+        {
+            setTimeout(function()
+            {document.getElementById("ab").style.top="-22vh";
+            document.getElementById("ab").style.zIndex="30";
+            },12000);
+        }
         return false;
     }
     else if(email.match(/^([a-zA-Z0-9._-])+(@)+([a-zA-Z0-9])+(\.)+([a-zA-Z]{2,4})$/) && p3!=p2 && checkbox_ret == true)
@@ -867,6 +911,7 @@ function emailfunc1()
         len_e=e_message;
         e_message += "I think You can't enter same Password...";
         display_err_msg()
+        
         return false;
     }
     else
@@ -879,18 +924,30 @@ function emailfunc1()
 
 function pass_chk_func()
 {
+    len_e="";
+    e_message="";
     p2=document.getElementById("input2").value;
     p3=document.getElementById("input3").value;
-    if(document.getElementById("up","lw","ln","sp","ch").checked)
+    if(document.getElementById("up","lw","ln","sp","ch").checked == true)
     {
         return true;
     }
-    else if(p3!=p2 && document.getElementById("up","lw","ln","sp","ch").checked)
+    else if(p3!=p2 && document.getElementById("up","lw","ln","sp","ch").checked == true)
     {
         e_message = "Please Check Your Password...";
         len_e=e_message.length;
         e_message += "\nI think You can't enter same Password...";
         display_err_msg();
+        return false;
+    }
+    else if(p3==p2 && document.getElementById("up","lw","ln","sp","ch").checked == false)
+    {
+        e_message="Please Check Your Password... \n[Tips:- Check all boxes are Marked]";
+        display_err_msg();
+        setTimeout(function()
+        {document.getElementById("ab").style.top="7vh";
+        document.getElementById("ab").style.zIndex="30";
+        },12000);
         return false;
     }
     else
@@ -903,6 +960,8 @@ function pass_chk_func()
 
 function email_chk_func()
 {
+    len_e="";
+    e_message="";
     email=document.getElementById("input2").value;
     if(email.match(/^([a-zA-Z0-9._-])+(@)+([a-zA-Z0-9])+(\.)+([a-zA-Z]{2,4})$/))
     {
@@ -935,6 +994,8 @@ function email_chk_func()
 
 function emailfunc()
 {
+    len_e="";
+    e_message="";
     let checkbox_ret=areAllCheckboxesChecked();
     email=document.getElementById("input2").value;
     if(email.match(/^([a-zA-Z0-9._-])+(@)+([a-zA-Z0-9])+(\.)+([a-zA-Z]{2,4})$/) && checkbox_ret == false)
@@ -1009,13 +1070,13 @@ function display_err_msg()
             typewritter();
         }, 1600);
 
-        let timeout2=(l*40)+3000;
+        let timeout2=(l*40)+6000;
         setTimeout(() => 
         {
             typewritter2_esce();
         }, timeout2);
 
-        time=(l*40)+3000+4000;
+        time=(l*40)+6000+4000;
         setTimeout(function()
         {
             if(width <= 770)
@@ -1052,26 +1113,26 @@ function display_err_msg()
         {
             typewritter1();
 
-            let timeout=(j*40)+2000;
+            let timeout=(j*40)+3000;
             setTimeout(() => 
             {
                 typewritter_esce();
             }, timeout);
 
-            let timeout1=(j*40)+2000+3000;
+            let timeout1=(j*40)+3000+3000;
             setTimeout(() => 
             {
                 typewritter2();
             }, timeout1);
             
-            let timeout2=(j*40)+2000+3000+3000;
+            let timeout2=(j*40)+3000+3000+6000;
             setTimeout(() => 
             {
                 typewritter2_esce();
             }, timeout2);
 
         }, 1600);
-        time2=(j*40)+2000+3000+3000+8000;
+        time2=(j*40)+2000+3000+3000+12000;
         setTimeout(function()
         {
             if(width <= 770)
@@ -1189,4 +1250,59 @@ function cl_delete()
         cl_msg--;
         setTimeout(cl_delete, 100);
     }
+}
+function yes_genetrate()
+{
+    length=8;
+    const lowercaseChars = 'abcdefghijklmnopqrstuvwxyz';
+    const uppercaseChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const numericChars = '0123456789';
+    const specialChars = '!@#$%^&*()-_=+[]{}|;:,.<>?/';
+    const allChars = lowercaseChars + uppercaseChars + numericChars + specialChars;
+  
+    // Ensure at least one character from each character set
+    gen_password += getRandomChar(lowercaseChars);
+    gen_password += getRandomChar(uppercaseChars);
+    gen_password += getRandomChar(numericChars);
+    gen_password += getRandomChar(specialChars);
+  
+    // Fill the rest of the password with random characters
+    for (let i = gen_password.length; i < length; i++) 
+    {
+      gen_password += getRandomChar(allChars);
+    }
+  
+    // Shuffle the characters in the password
+    gen_password = gen_password.split('').sort(() => Math.random() - 0.5).join('');
+    document.getElementById("i1").value=gen_password;
+
+    if(document.getElementById("input1").placeholder == "example123@gmail.com" && document.getElementById("input2").placeholder == "Password" && document.getElementById("input3").placeholder == "Re-Enter Password")
+    {
+        document.getElementById("input2").value=gen_password;
+        document.getElementById("input3").value=gen_password;
+    }
+    else if(document.getElementById("input2").placeholder == "Password" && document.getElementById("input3").placeholder == "Re-Enter Password")
+    {
+        document.getElementById("input2").value=gen_password;
+        document.getElementById("input3").value=gen_password;
+    }
+    e_message="I have to pest your password in password section... and you can also copy your password.";
+    display_err_msg();
+}
+function getRandomChar(characters) 
+{
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    return characters.charAt(randomIndex);
+}
+function no_generate()
+{
+    document.getElementById("ab").style.top="-22vh";
+    document.getElementById("ab").style.zIndex="-5";
+}
+function copy_pass()
+{
+    var copyText = document.getElementById("i1");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(copyText.value);
 }
